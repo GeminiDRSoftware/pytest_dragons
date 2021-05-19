@@ -14,12 +14,11 @@ def read(fname):
 setup(
     name='pytest-dragons',
     version='0.1.0',
-    author='Bruno C. Quint',
-    author_email='bruno.quint@noirlab.edu',
-    maintainer='Bruno C. Quint',
-    maintainer_email='bruno.quint@noirlab.edu',
-    license='MIT',
-    url='https://github.com/b1quint/pytest-dragons',
+    author='Gemini Data Processing Software Group',
+    author_email='sus_inquiries@gemini.edu',
+    url='http://www.gemini.edu',
+    maintainer='Science User Support Department',
+    license='BSD',
     description='A simple plugin to use with pytest',
     long_description=read('README.rst'),
     py_modules=['pytest_dragons'],
@@ -32,7 +31,6 @@ setup(
         'Topic :: Software Development :: Testing',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
@@ -43,8 +41,8 @@ setup(
         'License :: OSI Approved :: MIT License',
     ],
     entry_points={
-        'pytest11': [
-            'dragons = pytest_dragons',
-        ],
+        "pytest11": [
+            "pytest_dragons = pytest_dragons.plugin",
+        ]
     },
 )
