@@ -3,7 +3,7 @@
 
 import os
 import codecs
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 def read(fname):
@@ -20,10 +20,10 @@ setup(
     maintainer='Science User Support Department',
     license='BSD',
     description='A simple plugin to use with pytest',
-    long_description=read('README.rst'),
-    py_modules=['pytest_dragons'],
-    python_requires='>=3.5',
-    install_requires=['pytest>=3.5.0'],
+    long_description=read('README.md'),
+    packages=find_packages(),
+    python_requires='>=3.7',
+    install_requires=['pytest>=6.2.0'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Framework :: Pytest',
@@ -31,7 +31,6 @@ setup(
         'Topic :: Software Development :: Testing',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3 :: Only',

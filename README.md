@@ -20,7 +20,8 @@ This [pytest] plugin was generated with [Cookiecutter] along with
 
 
 ## Requirements
-* TODO
+* Python >= 3.7
+* PyTest >= 6.2.4
 
 
 ## Installation
