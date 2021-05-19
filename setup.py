@@ -21,9 +21,9 @@ setup(
     license='BSD',
     description='A simple plugin to use with pytest',
     long_description=read('README.md'),
-    packages=find_packages(),
+    py_modules=["pytest_dragons"],
     python_requires='>=3.7',
-    install_requires=['pytest>=6.2.0'],
+    install_requires=['pytest'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Framework :: Pytest',
@@ -41,7 +41,7 @@ setup(
     ],
     entry_points={
         "pytest11": [
-            "pytest_dragons = pytest_dragons.plugin",
+            "pytest_dragons = pytest_dragons",
         ]
     },
 )

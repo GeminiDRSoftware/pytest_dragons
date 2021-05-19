@@ -2,7 +2,7 @@ import os
 import subprocess
 
 import pytest
-from pytest_dragons.plugin import get_active_git_branch
+from pytest_dragons import get_active_git_branch
 
 
 def test_change_working_dir(change_working_dir):
@@ -17,14 +17,14 @@ def test_change_working_dir(change_working_dir):
     assert "pytest_dragons/test_plugin/outputs" not in os.getcwd()
 
     with change_working_dir():
-        assert "pytest_dragons/test_plugin/outputs" in os.getcwd()
+        assert "test_plugin/outputs" in os.getcwd()
 
-    assert "pytest_dragons/test_plugin/outputs" not in os.getcwd()
+    assert "test_plugin/outputs" not in os.getcwd()
 
     with change_working_dir("my_sub_dir"):
-        assert "pytest_dragons/test_plugin/outputs/my_sub_dir" in os.getcwd()
+        assert "test_plugin/outputs/my_sub_dir" in os.getcwd()
 
-    assert "pytest_dragons/test_plugin/outputs" not in os.getcwd()
+    assert "test_plugin/outputs" not in os.getcwd()
 
     dragons_basetemp = os.getenv("$DRAGONS_TEST_OUT")
     if dragons_basetemp:
