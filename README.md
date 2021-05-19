@@ -1,17 +1,5 @@
 # pytest_dragons
 
-.. image:: https://img.shields.io/pypi/v/pytest-dragons.svg
-    :target: https://pypi.org/project/pytest-dragons
-    :alt: PyPI version
-
-.. image:: https://img.shields.io/pypi/pyversions/pytest-dragons.svg
-    :target: https://pypi.org/project/pytest-dragons
-    :alt: Python versions
-
-.. image:: https://ci.appveyor.com/api/projects/status/github/b1quint/pytest-dragons?branch=master
-    :target: https://ci.appveyor.com/project/b1quint/pytest-dragons/branch/master
-    :alt: See Build Status on AppVeyor
-
 > :warning: This repository is under experimental phase and might not be useful for now.
 
 This plugin contains the fixtures for the DRAGONS Test Suite. At first, these 
