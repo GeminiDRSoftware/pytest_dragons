@@ -6,6 +6,7 @@ This plugin contains the fixtures for the DRAGONS Test Suite. At first, these
 fixtures lived in `conftest.py` files spread all over [DRAGONS] repository. 
 Then, we collected all these fixtures and put them into a single PyTest plug-in 
 that lived within [DRAGONS], but using them would require installing [DRAGONS]. 
+
 Now we are splitting up the `pytest_dragons` plugin, so you can install it 
 without installing [DRAGONS], making it clearer where are the fixtures and 
 allowing us to test the source code easily if wanted. 
@@ -16,18 +17,26 @@ This [pytest] plugin was generated with [Cookiecutter] along with
 
 
 ## Features
-* TODO
+
+All the fixtures and helper functions now live within [pytest_dragons]. Helper functions 
+are standard Python functions. Fixtures are special PyTest functions that need to be 
+used as arguments for test functions.  Most of the fixtures are using by our team 
+tests that run inside NOIRLab/GEMINI private network.  Getting access to external 
+contributors is unlikely to happen due to cybersecurity policies and data ownership. 
+
+However, you do need to install this plug-in if running any tests for [DRAGONS].
 
 
 ## Requirements
 * Python >= 3.7
-* PyTest >= 6.2.4
+* PyTest 
 
 
 ## Installation
-You can install "pytest-dragons" via [pip] from [PyPI]::
 
-    $ pip install pytest_dragons
+The easiest way to install `pytest_dragons` is via [pip]::
+
+    $ pip install 
 
 
 ## Usage
@@ -53,6 +62,7 @@ description.
 [file an issue]: https://github.com/b1quint/pytest-dragons/issues
 [pip]: https://pypi.org/project/pip/
 [pytest]: https://github.com/pytest-dev/pytest
+[pytest_dragons]: https://github.com/GeminiDRSoftware/pytest_dragons/blob/main/pytest_dragons.py
 [PyPI]: https://pypi.org/project
 [tox]: https://tox.readthedocs.io/en/latest/
 [@hackebrot]: https://github.com/hackebrot
