@@ -1,116 +1,17 @@
 """
-Configuration for tests that will propagate inside DRAGONS.
+Fixtures
+========
+
+These are fixtures used in DRAGONS' tests. Remember that fixtures are normally
+used as arguments for test functions and cannot be called directly. In a few cases,
+our fixtures might return a function, which we can call, or a context manager, which
+we use with the `with` statement.
 """
-
 import os
-import re
-import subprocess
-from contextlib import contextmanager
-
 import pytest
 
-
-def pytest_addoption(parser):
-    parser.addoption(
-        "--dragons-remote-data",
-        action="store_true",
-        default=False,
-        help="Enable tests that use the download_from_archive function."
-    )
-    parser.addoption(
-        "--do-plots",
-        action="store_true",
-        default=False,
-        help="Plot results of each test after running them."
-    )
-    parser.addoption(
-        "--keep-data",
-        action="store_true",
-        default=False,
-        help="Keep intermediate data (e.g. pre-stack data)."
-    )
-    parser.addoption(
-        "--interactive",
-        action="store_true",
-        default=False,
-        help="Run interactive tests."
-    )
-
-
-def pytest_configure(config):
-    config.addinivalue_line(
-        "markers",
-        "dragons_remote_data: tests with this mark will download a large "
-        "volume of data and run")
-    config.addinivalue_line(
-        "markers",
-        "preprocessed_data: tests with this download and preprocess the "
-        "data if it does not exist in the cache folder.")
-    config.addinivalue_line(
-        "markers",
-        "interactive: for tests that run interactively and require a display to" 
-        "run.")
-
-
-def pytest_collection_modifyitems(config, items):
-    """
-    Add custom command line options to the PyTest call for DRAGONS.
-
-    Examples
-    ========
-    ```
-    $ pytest --interactive geminidr/gmos/tests/spect/test_trace_apertures.py
-    ```
-    """
-    if not config.getoption("--dragons-remote-data"):
-        marker = pytest.mark.skip(reason="need --dragons-remote-data to run")
-        for item in items:
-            if "dragons_remote_data" in item.keywords:
-                item.add_marker(marker)
-
-    if not config.getoption("--interactive"):
-        marker = pytest.mark.skip(reason="need --interactive to run")
-        for item in items:
-            if "interactive" in item.keywords:
-                item.add_marker(marker)
-
-    if "GITHUB_WORKFLOW" in os.environ:
-        marker = pytest.mark.skip(
-            reason="GitHub Actions do not support tests with preprocessed data")
-        for item in items:
-            if "preprocessed_data" in item.keywords:
-                item.add_marker(marker)
-
-
-def pytest_report_header(config):
-    return f"DRAGONS_TEST directory: {os.getenv('DRAGONS_TEST')}"
-
-
-def get_active_git_branch():
-    """
-    Returns the name of the active GIT branch to be used in Continuous
-    Integration tasks and organize input/reference files.
-
-    Note: This works currently only if the remote name is "origin", though it
-    would be easy to adapt for other cases if needed.
-
-    Returns
-    -------
-    str or None : Name of the input active git branch. It returns None if
-        the branch name could not be retrieved.
-
-    """
-    branch_re = r'\(HEAD.*, \w+\/(\w*)(?:,\s\w+)?\)'
-    git_cmd = ['git', 'log', '-n', '1', '--pretty=%d', 'HEAD']
-    try:
-        out = subprocess.check_output(git_cmd).decode('utf8')
-        branch_name = re.search(branch_re, out).groups()[0]
-    except Exception:
-        print("\nCould not retrieve active git branch. Make sure that the\n"
-              f"following path is a valid Git repository: {os.getcwd()}\n")
-    else:
-        print(f"\nRetrieved active branch name:  {branch_name:s}")
-        return branch_name
+from contextlib import contextmanager
+from .helper import get_active_git_branch
 
 
 @pytest.fixture(scope="session")

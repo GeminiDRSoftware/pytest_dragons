@@ -5,6 +5,8 @@ import os
 import codecs
 from setuptools import setup, find_packages
 
+VERSION = '0.2.0'
+
 
 def read(fname):
     file_path = os.path.join(os.path.dirname(__file__), fname)
@@ -13,7 +15,7 @@ def read(fname):
 
 setup(
     name='pytest-dragons',
-    version='0.1.0',
+    version=VERSION,
     author='Gemini Data Processing Software Group',
     author_email='sus_inquiries@gemini.edu',
     url='http://www.gemini.edu',
@@ -21,7 +23,7 @@ setup(
     license='BSD',
     description='A simple plugin to use with pytest',
     long_description=read('README.md'),
-    py_modules=["pytest_dragons"],
+    packages=find_packages(),
     python_requires='>=3.7',
     install_requires=['pytest'],
     classifiers=[
@@ -41,7 +43,7 @@ setup(
     ],
     entry_points={
         "pytest11": [
-            "pytest_dragons = pytest_dragons",
+            "pytest_dragons = pytest_dragons.plugin",
         ]
     },
 )
