@@ -2,6 +2,8 @@
 
 > :warning: This repository is under experimental phase and might not be useful for now.
 
+[![Run unit tests](https://github.com/GeminiDRSoftware/pytest_dragons/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/GeminiDRSoftware/pytest_dragons/actions/workflows/unit-tests.yml)
+
 This plugin contains the fixtures for the DRAGONS Test Suite. At first, these 
 fixtures lived in `conftest.py` files spread all over [DRAGONS] repository. 
 Then, we collected all these fixtures and put them into a single PyTest plug-in 
