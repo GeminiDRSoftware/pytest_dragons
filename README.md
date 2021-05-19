@@ -38,8 +38,10 @@ However, you do need to install this plug-in if running any tests for [DRAGONS].
 
 The easiest way to install `pytest_dragons` is via [pip]::
 
-    $ pip install 
+    $ pip install -e git://github.com/GeminiDRSoftware/pytest_dragons.git@v0.1.0#egg=pytest_dragons
 
+Please, note that this is installing the `pytest_dragons` [v0.1.0]. 
+Refer to the [Releases] pages for all the released versions available.
 
 ## Usage
 * TODO
@@ -57,6 +59,8 @@ open source software.
 If you encounter any problems, please [file an issue] along with a detailed 
 description.
 
+[v0.1.0]: https://github.com/GeminiDRSoftware/pytest_dragons/releases/tag/v0.1.0
+
 [BSD]: http://opensource.org/licenses/BSD-3-Clause
 [cookiecutter-pytest-plugin]: https://github.com/pytest-dev/cookiecutter-pytest-plugin
 [Cookiecutter]: https://github.com/audreyr/cookiecutter
@@ -66,5 +70,6 @@ description.
 [pytest]: https://github.com/pytest-dev/pytest
 [pytest_dragons]: https://github.com/GeminiDRSoftware/pytest_dragons/blob/main/pytest_dragons.py
 [PyPI]: https://pypi.org/project
+[Releases]: https://github.com/GeminiDRSoftware/pytest_dragons/releases
 [tox]: https://tox.readthedocs.io/en/latest/
 [@hackebrot]: https://github.com/hackebrot
