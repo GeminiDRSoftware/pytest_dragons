@@ -5,7 +5,7 @@ import os
 import codecs
 from setuptools import setup, find_packages
 
-VERSION = '0.2.0'
+VERSION = '1.0.0'
 
 
 def read(fname):

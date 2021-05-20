@@ -1,7 +1,5 @@
 # pytest_dragons
 
-> :warning: This repository is under experimental phase and might not be useful for now.
-
 [![Run unit tests](https://github.com/GeminiDRSoftware/pytest_dragons/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/GeminiDRSoftware/pytest_dragons/actions/workflows/unit-tests.yml)
 
 This plugin contains the fixtures for the DRAGONS Test Suite. At first, these 
@@ -38,7 +36,7 @@ However, you do need to install this plug-in if running any tests for [DRAGONS].
 
 The easiest way to install `pytest_dragons` is via [pip]::
 
-    $ pip install -e git://github.com/GeminiDRSoftware/pytest_dragons.git@v0.1.0#egg=pytest_dragons
+    $ pip install -e git://github.com/GeminiDRSoftware/pytest_dragons.git@v1.0.0#egg=pytest_dragons
 
 Please, note that this is installing the `pytest_dragons` [v0.1.0]. 
 Refer to the [Releases] pages for all the released versions available.
