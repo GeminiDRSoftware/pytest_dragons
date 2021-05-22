@@ -55,3 +55,6 @@ jobs:
         shell: bash -l {0}
         run: |
           tox -e py37 -v
+
+      - name: Latest tag
+        uses: EndBug/latest-tag@v1.4.0
