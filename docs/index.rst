@@ -20,3 +20,13 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+
+Reference API
+==================
+
+.. toctree::
+   :maxdepth: 1
+
+   api/pytest_dragons
+
+
