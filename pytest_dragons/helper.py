@@ -31,6 +31,7 @@ def get_active_git_branch():
     except Exception:
         print("\nCould not retrieve active git branch. Make sure that the\n"
               f"following path is a valid Git repository: {os.getcwd()}\n")
+        print(f"git log output was:\n{out}")
     else:
         print(f"\nRetrieved active branch name:  {branch_name:s}")
         return branch_name
