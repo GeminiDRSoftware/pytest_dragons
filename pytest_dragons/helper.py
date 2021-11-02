@@ -23,7 +23,7 @@ def get_active_git_branch():
         the branch name could not be retrieved.
 
     """
-    branch_re = r'\(HEAD.*, \w+\/(\w\/\.*)(?:,\s\w+)?\)'
+    branch_re = r'\(HEAD.*, \w+\/([\w\/\.]*)(?:,\s\w+)?\)'
     git_cmd = ['git', 'log', '-n', '1', '--pretty=%d', 'HEAD']
     try:
         out = subprocess.check_output(git_cmd).decode('utf8')
