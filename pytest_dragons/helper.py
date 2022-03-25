@@ -23,6 +23,13 @@ def get_active_git_branch():
         the branch name could not be retrieved.
 
     """
+    print("Checking for Jenkins branch name for PR")
+    jenkins_branch_name = os.getenv('CHANGE_BRANCH', None)
+    if jenkins_branch_name:
+        print(f"Found Jenkins branch name of {jenkins_branch_name}")
+        return jenkins_branch_name
+    else:
+        print("No Jenkins branch set, reverting to git log to determine branch name")
     branch_re = r'\(HEAD.*, \w+\/([\w\/\.]*)(?:,\s\w+)?\)'
     git_cmd = ['git', 'log', '-n', '1', '--pretty=%d', 'HEAD']
     try:
