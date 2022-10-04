@@ -209,3 +209,55 @@ def path_to_outputs(request, base_temp):
     os.makedirs(path, exist_ok=True)
 
     return path
+
+
+@pytest.fixture(scope='module')
+def path_to_common_inputs(request, env_var='DRAGONS_TEST'):
+    """
+    PyTest fixture that returns the path to where the common input files
+    for a given package live.
+
+    Parameters
+    ----------
+    request : fixture
+        PyTest's built-in fixture with information about the test itself.
+
+    env_var : str
+        Environment variable that contains the root path to the input data.
+
+    Returns
+    -------
+    str:
+        Path to the input files (e.g.,
+        "/rtfperm/jenkins/dragons/geminidr/common_inputs")
+    """
+    path_to_test_data = os.getenv(env_var)
+
+    if path_to_test_data is None:
+        pytest.skip('Environment variable not set: $DRAGONS_TEST')
+
+    path_to_test_data = os.path.expanduser(path_to_test_data).strip()
+
+    module_path = request.module.__name__.split('.')[:1] + ["common_inputs"]
+    path = os.path.join(path_to_test_data, *module_path)
+
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            " Could not find path to input data:\n    {:s}".format(path))
+
+    if not os.access(path, os.R_OK):
+        pytest.fail('\n  Path to input test data exists but is not accessible: '
+                    '\n    {:s}'.format(path))
+
+    branch_name = get_active_git_branch()
+
+    if branch_name:
+        branch_name = branch_name.replace("/", "_")
+        path_with_branch = path.replace("/common_inputs", f"/common_inputs_{branch_name}")
+        path = path_with_branch if os.path.exists(path_with_branch) else path
+
+    print(f"Using the following path to the inputs:\n  {path}\n")
+    return path
+
+
+
