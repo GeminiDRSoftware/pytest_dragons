@@ -9,7 +9,8 @@ import os
 import pytest
 
 from .fixtures import (astrofaker, base_temp, change_working_dir,
-                       path_to_inputs, path_to_refs, path_to_outputs)
+                       path_to_inputs, path_to_refs, path_to_outputs,
+                       path_to_common_inputs)
 
 
 def pytest_addoption(parser):
