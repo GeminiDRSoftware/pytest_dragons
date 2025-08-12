@@ -14,8 +14,10 @@ def get_active_git_branch():
     Returns the name of the active GIT branch to be used in Continuous
     Integration tasks and organize input/reference files.
 
-    Note: This works currently only if the remote name is "origin", though it
-    would be easy to adapt for other cases if needed.
+    This expects the branch name to be prefixed by a remote name, which gets
+    stripped from the result. If more than one branch name matches the current
+    HEAD commit, the first one listed by `git log` will be returned (ignoring
+    any tags).
 
     Returns
     -------
@@ -23,7 +25,7 @@ def get_active_git_branch():
         the branch name could not be retrieved.
 
     """
-    branch_re = r'\(HEAD.*, \w+\/([\w\/\.]*)(?:,\s\w+)?\)'
+    branch_re = r'\(HEAD[^,]*,\s*(?:tag:[^,]+,\s*)*[\w-]+\/([\w\/\.-]+)(?:,.*)?\)'
     git_cmd = ['git', 'log', '-n', '1', '--pretty=%d', 'HEAD']
     try:
         out = subprocess.check_output(git_cmd).decode('utf8')
