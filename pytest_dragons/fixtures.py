@@ -124,12 +124,18 @@ def path_to_inputs(request, env_var='DRAGONS_TEST'):
         pytest.fail('\n  Path to input test data exists but is not accessible: '
                     '\n    {:s}'.format(path))
 
-    branch_name = get_active_git_branch()
+    branch_names = [get_active_git_branch()]
+    parent_branches = os.getenv('PARENT_BRANCHES', None)
+    if parent_branches:
+        branch_names.extend(parent_branches.split(','))
 
-    if branch_name:
-        branch_name = branch_name.replace("/", "_")
-        path_with_branch = path.replace("/inputs", f"/inputs_{branch_name}")
-        path = path_with_branch if os.path.exists(path_with_branch) else path
+    for branch_name in branch_names:
+        if branch_name is not None:
+            branch_name = branch_name.replace("/", "_")
+            path_with_branch = path.replace("/inputs", f"/inputs_{branch_name}")
+            if os.path.exists(path_with_branch):
+                path = path_with_branch
+                break
 
     print(f"Using the following path to the inputs:\n  {path}\n")
     return path
@@ -173,12 +179,18 @@ def path_to_refs(request, env_var='DRAGONS_TEST'):
         pytest.fail('\n Path to reference test data exists but is not accessible: '
                     '\n    {:s}'.format(path))
 
-    branch_name = get_active_git_branch()
+    branch_names = [get_active_git_branch()]
+    parent_branches = os.getenv('PARENT_BRANCHES', None)
+    if parent_branches:
+        branch_names.extend(parent_branches.split(','))
 
-    if branch_name:
-        branch_name = branch_name.replace("/", "_")
-        path_with_branch = path.replace("/refs", f"/refs_{branch_name}")
-        path = path_with_branch if os.path.exists(path_with_branch) else path
+    for branch_name in branch_names:
+        if branch_name is not None:
+            branch_name = branch_name.replace("/", "_")
+            path_with_branch = path.replace("/refs", f"/refs_{branch_name}")
+            if os.path.exists(path_with_branch):
+                path = path_with_branch
+                break
 
     print(f"Using the following path to the refs:\n  {path}\n")
     return path
